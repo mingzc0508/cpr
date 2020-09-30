@@ -611,7 +611,7 @@ Response Session::Impl::makeRequest(CURL* curl) {
     return Response{static_cast<std::int32_t>(response_code),
                     std::move(response_string),
                     std::move(header),
-                    std::move(Url(raw_url)),
+                    Url(raw_url),
                     elapsed,
                     std::move(cookies),
                     Error(curl_error, curl_->error),

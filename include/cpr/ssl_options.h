@@ -82,6 +82,8 @@ class CertFile {
   public:
     CertFile(const std::string&& p_filename) : filename(std::move(p_filename)) {}
 
+    virtual ~CertFile() = default;
+
     const std::string filename;
 
     virtual const char* GetCertType(void) const {
@@ -94,6 +96,8 @@ typedef CertFile PemCert;
 class DerCert : public CertFile {
   public:
     DerCert(const std::string&& p_filename) : CertFile(std::move(p_filename)) {}
+
+    virtual ~DerCert() = default;
 
     virtual const char* GetCertType(void) const {
         return "DER";
@@ -108,6 +112,8 @@ class KeyFile {
     template <typename FileType, typename PassType>
     KeyFile(FileType&& p_filename, PassType p_password)
             : filename(std::move(p_filename)), password(std::move(p_password)) {}
+
+    virtual ~KeyFile() = default;
 
     std::string filename;
     std::string password;
@@ -126,6 +132,8 @@ class DerKey : public KeyFile {
     template <typename FileType, typename PassType>
     DerKey(FileType&& p_filename, PassType p_password)
             : KeyFile(std::move(p_filename), std::move(p_password)) {}
+
+    virtual ~DerKey() = default;
 
     virtual const char* GetKeyType(void) const {
         return "DER";

@@ -1,0 +1,23 @@
+cc_library_shared {
+  name: "libcpr",
+  srcs: [
+    "cpr/*.cpp",
+  ],
+  local_include_dirs: [
+    "include",
+  ],
+  export_include_dirs: [
+    "include",
+  ],
+  shared_libs: [
+    "libcurl",
+  ],
+  export_shared_lib_headers: [
+    "libcurl",
+  ],
+  cflags: [
+    "-std=c++11",
+    "-fexceptions",
+    "-Wno-unused-parameter",
+  ],
+}
